@@ -1,0 +1,18 @@
+<div local-class="track-row">
+  {{#if @processing}}
+    <div local-class="track-processing">
+      <LoadingIndicator />
+    </div>
+  {{else}}
+    <div local-class="track-index">
+      {{@index}}
+    </div>
+  {{/if}}
+  <div local-class="track-name-container">
+    <div local-class="track-name">{{@name}}</div>
+    <div local-class="track-artist-album">
+      {{@artist}} • {{@album}}
+    </div>
+  </div>
+  <div local-class="track-duration">{{@duration}}</div>
+</div>

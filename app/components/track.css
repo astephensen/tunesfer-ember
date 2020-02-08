@@ -1,0 +1,51 @@
+:root {
+  --opacityFaded: 0.7;
+  --fontSizeLarge: 1.25em;
+  --fontSizeSmall: 0.8em;
+}
+
+.track-row {
+  display: flex;
+  flex: 1;
+  padding: 1em;
+  transition: all 0.3s;
+  border-radius: 10px;
+
+  &:hover {
+    background-color: white;
+    box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.05);
+  }
+}
+
+.track-processing {
+  width: 2.5em;
+  display: flex;
+  align-items: center;
+}
+
+.track-index {
+  font-size: var(--fontSizeLarge);
+  opacity: var(--opacityFaded);
+  padding-right: 1em;
+  text-align: right;
+  width: 2.5em;
+}
+
+.track-name-container {
+  flex: 1;
+}
+
+.track-name {
+  font-size: var(--fontSizeLarge);
+  margin-bottom: 4px;
+}
+
+.track-artist-album {
+  font-size: var(--fontSizeSmall);
+  opacity: var(--opacityFaded);
+}
+
+.track-duration {
+  font-size: var(--fontSizeLarge);
+  opacity: var(--opacityFaded);
+}

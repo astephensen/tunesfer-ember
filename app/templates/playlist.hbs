@@ -1,7 +1,19 @@
-<MusicButton @title="Add to Apple Music" @action={{this.addPlaylist}}/>
+<PlaylistInfo
+  @image={{this.model.playlist.images.firstObject.url}}
+  @name={{this.model.playlist.name}}
+  @description={{this.model.playlist.description}}
+  @author={{this.model.playlist.owner.display_name}}
+>
+  <MusicButton @title="Add to Apple Music" @action={{this.addPlaylist}}/>
+</PlaylistInfo>
 
-{{this.model.playlist.description}}
-
-{{#each this.model.playlist.tracks.items as |trackItem|}}
-  {{trackItem.track.name}} - {{trackItem.track.artists.firstObject.name}}<br />
+{{#each this.model.playlist.tracks.items as |trackItem trackIndex|}}
+  <Track
+    @index={{add-one trackIndex}}
+    @name={{trackItem.track.name}}
+    @artist={{trackItem.track.artists.firstObject.name}}
+    @album={{trackItem.track.album.name}}
+    @duration={{format-milliseconds trackItem.track.duration_ms}}
+    @processing={{false}}
+  />
 {{/each}}
