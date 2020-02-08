@@ -7,6 +7,11 @@
   @author={{this.model.playlist.owner.display_name}}
 >
   <MusicButton @title="Add to Apple Music" @action={{this.addPlaylist}}/>
+  {{!--
+  {{#if this.processTrack.isRunning}}
+    <button type="button" {{on "click" this.cancel}}>Cancel</button>
+  {{/if}}
+  --}}
 </PlaylistInfo>
 
 {{#each this.model.playlist.tracks.items as |trackItem trackIndex|}}
@@ -16,6 +21,8 @@
     @artist={{trackItem.track.artists.firstObject.name}}
     @album={{trackItem.track.album.name}}
     @duration={{format-milliseconds trackItem.track.duration_ms}}
-    @processing={{this.processing}}
+    @processing={{trackItem.task.hasStarted}}
+    @succeeded={{trackItem.task.isSuccessful}}
+    @failed={{trackItem.task.isError}}
   />
 {{/each}}

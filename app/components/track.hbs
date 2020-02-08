@@ -1,7 +1,13 @@
 <div local-class="track-row">
   {{#if @processing}}
     <div local-class="track-processing">
-      <LoadingIndicator />
+      {{#if @succeeded}}
+        Y
+      {{else if @failed}}
+        N
+      {{else}}
+        <LoadingIndicator />
+      {{/if}}
     </div>
   {{else}}
     <div local-class="track-index">

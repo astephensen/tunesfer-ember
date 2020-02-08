@@ -1,6 +1,7 @@
 import Service from '@ember/service';
 import fetch from 'fetch';
 import Playlist from '../models/playlist';
+import TrackItem from '../models/track-item';
 
 export default class MusifyService extends Service {
   musicKit = MusicKit.getInstance();
@@ -30,7 +31,9 @@ export default class MusifyService extends Service {
     return fetch('/response.json').then((response) => {
       return response.json();
     }).then((json) => {
-      return Playlist.create(json);
+      const playlist = Playlist.create(json);
+      playlist.tracks.items = playlist.tracks.items.map((trackItem) => TrackItem.create(trackItem))
+      return playlist;
     });
   }
 
@@ -111,6 +114,16 @@ export default class MusifyService extends Service {
    * @param {Object} playlist The playlist to add the song to.
    */
   async addSongToPlaylist(song, playlist) {
+    return this.addSongsToPlaylist([song], playlist)
+  }
+
+  /**
+   * Adds multiple songs to a playlist.
+   *
+   * @param {Array[Object]} songs The songs to add.
+   * @param {Object} playlist The playlist to add the song to.
+   */
+  async addSongsToPlaylist(songs, playlist) {
     return await fetch(`https://api.music.apple.com/v1/me/library/playlists/${playlist.id}/tracks`, {
       method: 'POST',
       headers: {
@@ -118,9 +131,11 @@ export default class MusifyService extends Service {
         'Music-User-Token': this.musicKit.api.userToken
       },
       body: JSON.stringify({
-        data: [{
-          id: song.id
-        }]
+        data: songs.map((song) => {
+          return {
+            id: song.id
+          }
+        })
       })
     });
   }
