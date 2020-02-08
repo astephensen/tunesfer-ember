@@ -13,3 +13,9 @@ body {
     flex: 0 1 900px;
   }
 }
+
+@media (max-width: 600px) {
+  body > div {
+    padding: 1em;
+  }
+}

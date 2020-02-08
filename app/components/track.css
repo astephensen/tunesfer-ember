@@ -50,4 +50,19 @@
 .track-duration {
   font-size: var(--fontSizeLarge);
   opacity: var(--opacityFaded);
+  padding-left: 0.5em;
+}
+
+@media (max-width: 600px) {
+  :root {
+    --fontSizeLarge: 1.1em;
+  }
+
+  .track-row {
+    padding: 0.7em 0.25em;
+  }
+
+  .track-index {
+    padding-right: 0.5em;
+  }
 }
