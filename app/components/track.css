@@ -21,6 +21,7 @@
   width: 2.5em;
   display: flex;
   align-items: center;
+  padding-right: 1em;
 }
 
 .track-index {

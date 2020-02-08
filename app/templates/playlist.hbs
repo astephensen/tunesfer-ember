@@ -1,3 +1,5 @@
+<LinkTo @route="application"><BackButton /></LinkTo>
+
 <PlaylistInfo
   @image={{this.model.playlist.images.firstObject.url}}
   @name={{this.model.playlist.name}}
@@ -14,6 +16,6 @@
     @artist={{trackItem.track.artists.firstObject.name}}
     @album={{trackItem.track.album.name}}
     @duration={{format-milliseconds trackItem.track.duration_ms}}
-    @processing={{false}}
+    @processing={{this.processing}}
   />
 {{/each}}
