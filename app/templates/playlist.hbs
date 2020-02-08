@@ -1,3 +1,7 @@
-Playlist goes here
+<MusicButton @title="Add to Apple Music" @action={{this.addPlaylist}}/>
 
 {{this.model.playlist.description}}
+
+{{#each this.model.playlist.tracks.items as |trackItem|}}
+  {{trackItem.track.name}} - {{trackItem.track.artists.firstObject.name}}<br />
+{{/each}}

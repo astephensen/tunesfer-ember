@@ -3,6 +3,7 @@ import fetch from 'fetch';
 import Playlist from '../models/playlist';
 
 export default class MusifyService extends Service {
+  msuic = MusicKit.getInstance();
 
   /**
    * Fetches a playlist from Spotify and returns a Playlist object.
