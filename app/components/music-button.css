@@ -1,0 +1,45 @@
+.music-button {
+  background: radial-gradient(circle farthest-corner at 0px -30px, #FF5E50, #FE5C6C, #B87EB0, #916CFF, #70BCFB);
+  border-radius: 100px;
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  height: 30px;
+  padding: 0 1em;
+  font-size: 0.8em;
+  color: white;
+  transition: all 0.3s;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  z-index: 100;
+  box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.15);
+
+  &:before {
+    border-radius: inherit;
+    background: black;
+    content: '';
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0; left: 0;
+    opacity: 0;
+    width: 100%;
+    z-index: -100;
+    transition: opacity 0.45s;
+  }
+
+  &:hover {
+    &:before {
+      opacity: 1;
+    }
+  }
+}
+
+.music-image {
+  width: 18px;
+  height: 18px;
+  background: url('/images/music-icon.svg') no-repeat center;
+  background-size: 18px 18px;
+  margin-right: 0.5em;
+}
