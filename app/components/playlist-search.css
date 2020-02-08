@@ -1,0 +1,29 @@
+.playlist-search-container {
+  display: flex;
+  flex: 1;
+  max-height: '500px';
+  opacity: '1';
+  transition: opacity 0.15s, max-height 0.3s 0.15s;
+
+  &.hidden {
+    max-height: 0;
+    opacity: 0;
+  }
+}
+
+.playlist-search-box {
+  background-color: #FFF;
+  border-radius: 3px;
+  border: none;
+  box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.1);
+  flex: 1;
+  font-size: 1.25em;
+  margin: 1em 0;
+  outline: none;
+  padding: 0.75em;
+
+  &::placeholder {
+    color: #BBB;
+    font-weight: normal;
+  }
+}
