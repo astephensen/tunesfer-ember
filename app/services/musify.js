@@ -3,6 +3,8 @@ import fetch from 'fetch';
 import Playlist from '../models/playlist';
 import TrackItem from '../models/track-item';
 
+const MUSIFY_URL = 'https://c9s50yde72.execute-api.us-east-1.amazonaws.com/dev/playlist';
+
 export default class MusifyService extends Service {
   musicKit = MusicKit.getInstance();
 
@@ -23,12 +25,11 @@ export default class MusifyService extends Service {
   /**
    * Fetches a playlist from Spotify and returns a Playlist object.
    *
-   * @param {string} userID The ID of the user that created the playlist.
    * @param {string} playlistId The ID of the playlist.
    * @returns {Playlist} The fetched playlist.
    */
-  async getPlaylist(userId, playlistId) {
-    return fetch('/response.json').then((response) => {
+  async getPlaylist(playlistId) {
+    return fetch(`${MUSIFY_URL}/${playlistId}`).then((response) => {
       return response.json();
     }).then((json) => {
       const playlist = Playlist.create(json);

@@ -1,3 +1,4 @@
 <div local-class="playlist-search-container">
+  {{!-- Note: Need to use the fn helper because the Input component behaves strangely --}}
   <Input local-class="playlist-search-box" placeholder={{@placeholder}} @enter={{fn @action}} />
 </div>

@@ -4,8 +4,8 @@ import { inject as service } from '@ember/service';
 export default class PlaylistRoute extends Route {
   @service musify;
 
-  async model({ user_id: userId, playlist_id: playlistId }) {
-    const playlist = await this.musify.getPlaylist(userId, playlistId);
+  async model({ playlist_id: playlistId }) {
+    const playlist = await this.musify.getPlaylist(playlistId);
     return { playlist };
   }
 }
