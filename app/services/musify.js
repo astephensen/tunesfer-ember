@@ -3,7 +3,21 @@ import fetch from 'fetch';
 import Playlist from '../models/playlist';
 
 export default class MusifyService extends Service {
-  msuic = MusicKit.getInstance();
+  musicKit = MusicKit.getInstance();
+
+  /**
+   * Authorizes the user with Apple Music.
+   *
+   * @returns {bool} A success flag.
+   */
+  async authorize() {
+    try {
+      await this.musicKit.authorize();
+      return true;
+    } catch {
+      return false;
+    }
+  }
 
   /**
    * Fetches a playlist from Spotify and returns a Playlist object.
@@ -17,6 +31,97 @@ export default class MusifyService extends Service {
       return response.json();
     }).then((json) => {
       return Playlist.create(json);
+    });
+  }
+
+  /**
+   * Searches for a playlist in the user's library with the passed in name.
+   *
+   * @param {string} name The name of the playlist to search for.
+   * @returns {Object|null} The Apple Music playlist that was found or null if it wasn't.
+   */
+  async findPlaylist(name) {
+    const playlists = await this.musicKit.api.library.playlists();
+    const foundPlaylist = playlists.find((playlist) => {
+      return playlist.attributes.name === name;
+    });
+    return foundPlaylist || null;
+  }
+
+  /**
+   * Creates a playlist.
+   *
+   * Note: We have to send a request instead of using MusicKit as there's no way of creating a playlist using the
+   * library. MusicKit conveniently provides the required tokens.
+   *
+   * @param {string} name The name of the playlist.
+   * @param {string} description The description of the playlist.
+   * @returns {Object} An Apple Music playlist object.
+   */
+  async createPlaylist(name, description) {
+    const result = await fetch('https://api.music.apple.com/v1/me/library/playlists', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${this.musicKit.api.developerToken}`,
+        'Music-User-Token': this.musicKit.api.userToken
+      },
+      body: JSON.stringify({
+        attributes: {
+          name,
+          description
+        }
+      })
+    });
+    const resultJSON = await result.json();
+    return resultJSON.data[0];
+  }
+
+  /**
+   * Searches for a song based on a Spotify track object.
+   *
+   * @param {Object} track The Spotify track to search for.
+   * @returns {Object} The Apple Music song object or null if one could not be found.
+   */
+  async findSpotifySong(track) {
+    const albumName = track.album.name;
+    const artistName = track.artists[0].name;
+    const trackName = track.name;
+    const queryString = `${trackName}, ${artistName}, ${albumName}`
+    return await this.findSong(queryString);
+  }
+
+  /**
+   * Searches for a song with a string.
+   *
+   * @param {string} query The song to search for.
+   * @returns {Object} The Apple Music song object or null if one could not be found.
+   */
+  async findSong(query) {
+    const result = await this.musicKit.api.search(query);
+    if (result.songs && result.songs.data && result.songs.data[0]) {
+      return result.songs.data[0];
+    }
+    return null;
+  }
+
+  /**
+   * Adds a song to a playlist.
+   *
+   * @param {Object} song The song to add.
+   * @param {Object} playlist The playlist to add the song to.
+   */
+  async addSongToPlaylist(song, playlist) {
+    return await fetch(`https://api.music.apple.com/v1/me/library/playlists/${playlist.id}/tracks`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${this.musicKit.api.developerToken}`,
+        'Music-User-Token': this.musicKit.api.userToken
+      },
+      body: JSON.stringify({
+        data: [{
+          id: song.id
+        }]
+      })
     });
   }
 }
