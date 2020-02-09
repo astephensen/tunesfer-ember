@@ -5,18 +5,6 @@
   justify-content: center;
   flex: 1;
   height: 100%;
-
-  & h1 {
-    font-family: 'Lilita One', sans-serif;
-    font-size: 3em;
-    font-weight: normal;
-  }
-
-  & h2 {
-    font-size: 1em;
-    font-weight: normal;
-    margin-bottom: 0.5em;
-  }
 }
 
 .logo-container {
@@ -31,4 +19,10 @@
 
 .or {
   margin-bottom: 1.3em;
+}
+
+.bottom-links {
+  margin: 2em 0 1em 0;
+  color: #777;
+  font-size: 0.8em;
 }

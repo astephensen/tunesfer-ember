@@ -10,4 +10,5 @@ Router.map(function() {
   this.route('search', { path: '/' });
   this.route('playlist', { path: ':playlist_id' });
   this.route('legacy-playlist', { path: ':user_id/playlist/:playlist_id' });
+  this.route('about');
 });

@@ -7,6 +7,8 @@
   />
   <div local-class="or">- or -</div>
   <MusicButton @large="true" @hideImage="true" @title="Try some Australian Indie?" @action={{this.randomPlaylist}} />
-
+  <div local-class="bottom-links">
+    <LinkTo @route="about">About</LinkTo> | <a href="https://github.com/astephensen/musify-web">Github</a>
+  </div>
 </div>
 {{!-- <button type="button" {{on "click" this.loadPlaylist}}>Search</button> --}}
