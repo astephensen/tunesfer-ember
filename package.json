@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build": "ember build",
-    "deploy": "ember build --environment production && cp dist/index.html dist/404.html && ember github-pages:commit --branch gh-pages --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\" && git push origin gh-pages",
+    "deploy": "ember build --environment production && ember github-pages:commit --branch gh-pages --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\" && git push origin gh-pages",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",

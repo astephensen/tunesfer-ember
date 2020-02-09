@@ -3,6 +3,11 @@
 const EmberApp = require('ember-cli/lib/broccoli/ember-app');
 const postcssPresetEnv = require('postcss-preset-env');
 
+// eslint-disable-next-line node/no-extraneous-require
+const MergeTrees = require('broccoli-merge-trees');
+// eslint-disable-next-line node/no-extraneous-require
+const Funnel = require('broccoli-funnel');
+
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     cssModules: {
@@ -30,5 +35,12 @@ module.exports = function(defaults) {
   // please specify an object with the list of modules as keys
   // along with the exports of each module as its value.
 
-  return app.toTree();
+  const appTree = app.toTree();
+
+  return new MergeTrees([appTree, new Funnel(appTree, {
+    files: ['index.html'],
+    getDestinationPath: function() {
+      return '404.html';
+    }
+  })]);
 };
