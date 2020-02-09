@@ -7,7 +7,7 @@
     </div>
     {{! TODO: Don't use dangerous curlies }}
     {{! template-lint-disable no-triple-curlies }}
-    <span local-class="playlist-description">{{{@description}}}</span>
+    <span local-class="playlist-description">{{{format-spotify-description @description}}}</span>
     <div local-class="playlist-yield">{{yield}}</div>
   </div>
 </div>
