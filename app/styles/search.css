@@ -10,13 +10,22 @@
     font-family: 'Lilita One', sans-serif;
     font-size: 3em;
     font-weight: normal;
-    margin-bottom: 0.5em;
   }
 
   & h2 {
     font-size: 1em;
     font-weight: normal;
     margin-bottom: 0.5em;
+  }
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1em;
+
+  & img {
+    margin-right: 0.5em;
   }
 }
 
