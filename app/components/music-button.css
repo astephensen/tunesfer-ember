@@ -5,7 +5,7 @@
   align-items: center;
   flex: 0 0 auto;
   height: 30px;
-  padding: 0 1em;
+  padding: 0 1.25em;
   font-size: 0.8em;
   color: white;
   transition: all 0.3s;
@@ -47,14 +47,13 @@
   height: 18px;
   background: url('/images/music-icon.svg') no-repeat center;
   background-size: 18px 18px;
-  margin-right: 0.5em;
+  margin-right: 0.7em;
 }
 
 @media (max-width: 600px) {
   .music-button {
     height: 35px;
     font-size: 0.8em;
-    font-weight: bold;
   }
 
   .large {
