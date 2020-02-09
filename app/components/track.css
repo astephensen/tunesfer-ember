@@ -40,6 +40,9 @@
 .track-name {
   font-size: var(--fontSizeLarge);
   margin-bottom: 4px;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .track-artist-album {
