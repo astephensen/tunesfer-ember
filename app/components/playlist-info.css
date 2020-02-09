@@ -1,6 +1,6 @@
 .playlist-info {
   display: flex;
-  padding: 1em 0 1.5em 0;
+  padding: 1em 0 0 0;
 }
 
 .playlist-image {
@@ -53,11 +53,10 @@
 @media (max-width: 600px) {
   .playlist-info {
     flex-direction: column;
-    padding-bottom: 0.5em;
   }
 
   .playlist-text-container {
-    margin: 1em 0;
+    margin: 1em 0 0 0;
   }
 
   .playlist-name {

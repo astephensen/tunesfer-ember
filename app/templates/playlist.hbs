@@ -6,7 +6,9 @@
   @description={{this.model.playlist.description}}
   @author={{this.model.playlist.owner.display_name}}
 >
-  <MusicButton @title="Add to Apple Music" @action={{this.addPlaylist}}/>
+  {{#unless this.processing}}
+    <MusicButton @title="Add to Apple Music" @action={{this.addPlaylist}}/>
+  {{/unless}}
   {{!--
   {{#if this.processTrack.isRunning}}
     <button type="button" {{on "click" this.cancel}}>Cancel</button>
@@ -14,15 +16,23 @@
   --}}
 </PlaylistInfo>
 
-{{#each this.model.playlist.tracks.items as |trackItem trackIndex|}}
-  <Track
-    @index={{add-one trackIndex}}
-    @name={{trackItem.track.name}}
-    @artist={{trackItem.track.artists.firstObject.name}}
-    @album={{trackItem.track.album.name}}
-    @duration={{format-milliseconds trackItem.track.duration_ms}}
-    @processing={{trackItem.task.hasStarted}}
-    @succeeded={{trackItem.task.isSuccessful}}
-    @failed={{trackItem.task.isError}}
-  />
-{{/each}}
+{{#if this.processing}}
+  <div local-class="info-container">
+    <InfoBar @text="This playlist is being added to your Apple Music library. You will need to keep this page open until it is done." />
+  </div>
+{{/if}}
+
+<div local-class="track-list">
+  {{#each this.model.playlist.tracks.items as |trackItem trackIndex|}}
+    <Track
+      @index={{add-one trackIndex}}
+      @name={{trackItem.track.name}}
+      @artist={{trackItem.track.artists.firstObject.name}}
+      @album={{trackItem.track.album.name}}
+      @duration={{format-milliseconds trackItem.track.duration_ms}}
+      @processing={{trackItem.task.hasStarted}}
+      @succeeded={{trackItem.task.isSuccessful}}
+      @failed={{trackItem.task.isError}}
+    />
+  {{/each}}
+</div>

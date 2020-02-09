@@ -17,6 +17,9 @@ export default class PlaylistController extends Controller {
       return;
     }
 
+    // Update UI.
+    this.processing = true;
+
     // Check if the playlist exists in the library.
     let playlist = await this.musify.findPlaylist(this.model.playlist.name);
     if (!playlist) {
