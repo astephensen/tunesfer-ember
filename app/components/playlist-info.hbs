@@ -1,13 +1,24 @@
 <div local-class="playlist-info">
-  <img local-class="playlist-image" src={{@image}} alt="Playlist cover" />
-  <div local-class="playlist-text-container">
-    <div local-class="playlist-name-container">
-      <span local-class="playlist-name">{{@name}}</span>
-      <span local-class="playlist-author"><span local-class="playlist-by">By</span> {{@author}}</span>
+  {{#if @loading}}
+    <div local-class="playlist-image"></div>
+    <div local-class="playlist-text-container">
+      <div local-class="playlist-name-container">
+        <div local-class="playlist-name">Loading playlist...</div>
+        <div local-class="playlist-author">One moment please!</div>
+      </div>
+      <div local-class="playlist-description">{{yield}}</div>
     </div>
-    {{! TODO: Don't use dangerous curlies }}
-    {{! template-lint-disable no-triple-curlies }}
-    <span local-class="playlist-description">{{{format-spotify-description @description}}}</span>
-    <div local-class="playlist-yield">{{yield}}</div>
-  </div>
+  {{else}}
+    <img local-class="playlist-image" src={{@image}} alt="Playlist cover" />
+    <div local-class="playlist-text-container">
+      <div local-class="playlist-name-container">
+        <div local-class="playlist-name">{{@name}}</div>
+        <div local-class="playlist-author"><span local-class="playlist-by">By</span> {{@author}}</div>
+      </div>
+      {{! TODO: Don't use dangerous curlies }}
+      {{! template-lint-disable no-triple-curlies }}
+      <div local-class="playlist-description">{{{format-spotify-description @description}}}</div>
+      <div local-class="playlist-yield">{{yield}}</div>
+    </div>
+  {{/if}}
 </div>
