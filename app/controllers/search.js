@@ -13,4 +13,9 @@ export default class SearchController extends Controller {
     const [ , playlistId ] = result;
     this.transitionToRoute('playlist', playlistId);
   }
+
+  @action
+  randomPlaylist() {
+    this.transitionToRoute('playlist', '4Qqc4lX4i4A8uXD9SBQy7S');
+  }
 }

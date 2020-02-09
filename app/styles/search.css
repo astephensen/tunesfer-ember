@@ -1,0 +1,25 @@
+.search-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  height: 100%;
+
+  & h1 {
+    font-size: 2em;
+    font-weight: normal;
+    margin-bottom: 0.5em;
+    font-style: italic;
+  }
+
+  & h2 {
+    font-size: 1em;
+    font-weight: normal;
+    margin-bottom: 0.5em;
+  }
+}
+
+.or {
+  margin-bottom: 1em;
+}

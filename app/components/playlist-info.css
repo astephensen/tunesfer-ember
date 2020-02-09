@@ -21,17 +21,17 @@
 .playlist-name-container {
   margin-bottom: 0.5em;
   display: flex;
-    flex-direction: column;
+  flex-direction: column;
 }
 
 .playlist-name {
+  margin-bottom: 0.2em;
   font-size: 2em;
   font-weight: bold;
 }
 
 .playlist-by {
   opacity: 0.8;
-  margin-left: 0.5em;
 }
 
 .playlist-author {
@@ -40,7 +40,7 @@
 }
 
 .playlist-description {
-  margin-bottom: 0.7em;
+  margin-bottom: 0.8em;
   opacity: 0.7;
 
   & a {
@@ -58,17 +58,8 @@
     margin: 1em 0;
   }
 
-  .playlist-name-container {
-    display: flex;
-    flex-direction: column;
-  }
-
   .playlist-name {
     font-size: 1.7em;
-  }
-
-  .playlist-by {
-    margin-left: 0;
   }
 
   .playlist-author {

@@ -1,9 +1,9 @@
 .playlist-search-container {
   display: flex;
-  flex: 1;
-  max-height: '500px';
-  opacity: '1';
+  max-height: 500px;
+  opacity: 1;
   transition: opacity 0.15s, max-height 0.3s 0.15s;
+  width: 100%;
 
   &.hidden {
     max-height: 0;
@@ -26,4 +26,6 @@
     color: #BBB;
     font-weight: normal;
   }
+
+  -webkit-appearance: none;
 }

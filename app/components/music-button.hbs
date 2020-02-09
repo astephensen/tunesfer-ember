@@ -1,1 +1,4 @@
-<button type="button" local-class="music-button" {{on "click" @action}}><div local-class="music-image"></div>{{@title}}{{yield}}</button>
+<button type="button" local-class="music-button {{if @large 'large'}}" {{on "click" @action}}>
+  {{#unless @hideImage}}<div local-class="music-image"></div>{{/unless}}
+  {{@title}}{{yield}}
+</button>
