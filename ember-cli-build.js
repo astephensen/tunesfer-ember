@@ -11,7 +11,7 @@ const Funnel = require('broccoli-funnel');
 module.exports = function(defaults) {
   let app = new EmberApp(defaults, {
     fingerprint: {
-      exclude: ['logo-square.png'],
+      exclude: ['logo.png'],
       extensions: ['js', 'css', 'png', 'jpg', 'gif', 'map', 'svg']
     },
     cssModules: {

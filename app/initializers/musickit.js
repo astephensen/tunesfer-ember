@@ -4,7 +4,7 @@ export function initialize() {
     app: {
       name: 'Musify',
       build: '0.1',
-      icon: 'https://musify.alan.io/logo-square.png'
+      icon: 'https://musify.alan.io/logo.png'
     }
   });
 }
