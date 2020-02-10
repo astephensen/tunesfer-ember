@@ -5,7 +5,9 @@
 
 .playlist-image {
   width: 128px;
+  min-width: 128px;
   height: 128px;
+  min-height: 128px;
   box-shadow: 0px 0px 30px 0px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
 }
