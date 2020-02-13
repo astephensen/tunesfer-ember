@@ -1,0 +1,15 @@
+.feedback-button-container {
+  padding: 0em;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.feedback-button {
+  font-size: 0.8em;
+  display: block;
+  background-color: white;
+  padding: 0.7em 0.8em 0.7em 1em;
+  border-radius: 15px 0 0 0;
+  box-shadow: 0px 3px 15px 0px rgba(0, 0, 0, 0.1);
+}
