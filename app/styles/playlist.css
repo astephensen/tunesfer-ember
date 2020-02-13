@@ -24,6 +24,12 @@
   padding: 0 1em;
 }
 
+/* TODO: Not this. Gross. */
+.info-success > div {
+  background: #916CFF;
+  background: radial-gradient(circle farthest-corner at 0px -30px, #916CFF, #7BA3FD);
+}
+
 .cancel-button {
   cursor: pointer;
   font-size: 0.8em;

@@ -7,7 +7,9 @@
   @author={{this.model.playlist.owner.display_name}}
 >
   {{#if this.addPlaylist.isIdle}}
-    <MusicButton @title="Add to Apple Music" @action={{perform this.addPlaylist}}/>
+    {{#unless this.addPlaylist.lastSuccessful}}
+      <MusicButton @title="Add to Apple Music" @action={{perform this.addPlaylist}}/>
+    {{/unless}}
   {{/if}}
 </PlaylistInfo>
 
@@ -20,6 +22,12 @@
       </div>
       <button local-class="cancel-button" type="button" {{on 'click' this.cancel}}>Cancel</button>
     </InfoBar>
+  </div>
+{{/if}}
+
+{{#if this.addPlaylist.lastSuccessful}}
+  <div local-class="info-container info-success">
+    <InfoBar @text="All done! This playlist is now in your Apple Music library. Note that it may take a few moments for all of the songs to show up!" />
   </div>
 {{/if}}
 

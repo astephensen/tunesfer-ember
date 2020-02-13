@@ -7,6 +7,9 @@ import { TrackItemState } from '../models/track-item';
 export default class PlaylistController extends Controller {
   @service musify;
 
+  /**
+   * Task to add the playlist to the user's library.
+   */
   @(task(function *() {
     const result = yield this.musify.authorize();
     if (!result) {
@@ -30,6 +33,9 @@ export default class PlaylistController extends Controller {
     yield all(tasks);
   })).restartable() addPlaylist;
 
+  /**
+   * Task to add a track to a playlist.
+   */
   @(task(function * (trackItem, playlist) {
     trackItem.state = TrackItemState.PROCESSING;
 
