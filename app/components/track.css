@@ -19,16 +19,14 @@
 }
 
 .track-processing {
-  width: 2.5em;
   display: flex;
   align-items: center;
-  padding-right: 1em;
 }
 
 .track-index {
   font-size: var(--fontSizeLarge);
   opacity: var(--opacityFaded);
-  padding-right: 1em;
+  padding-right: 0.75em;
   text-align: right;
   width: 2.5em;
 }

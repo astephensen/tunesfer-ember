@@ -30,9 +30,7 @@
       @artist={{trackItem.track.artists.firstObject.name}}
       @album={{trackItem.track.album.name}}
       @duration={{format-milliseconds trackItem.track.duration_ms}}
-      @processing={{trackItem.task.hasStarted}}
-      @succeeded={{trackItem.task.isSuccessful}}
-      @failed={{trackItem.task.isError}}
+      @state={{trackItem.state}}
     />
   {{/each}}
 </div>

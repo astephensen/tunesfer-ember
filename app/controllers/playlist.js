@@ -3,6 +3,7 @@ import { action } from '@ember/object';
 import { inject as service } from '@ember/service';
 import { tracked } from '@glimmer/tracking';
 import { task } from 'ember-concurrency';
+import { TrackItemState } from '../models/track-item';
 
 export default class PlaylistController extends Controller {
   @service musify;
@@ -28,7 +29,8 @@ export default class PlaylistController extends Controller {
 
     // Create tasks for each of the tracks.
     for (const trackItem of this.model.playlist.tracks.items) {
-      trackItem.task = this.processTrack.perform(trackItem, playlist)
+      trackItem.task = this.processTrack.perform(trackItem, playlist);
+      trackItem.state = TrackItemState.IDLE;
     }
   }
 
@@ -38,10 +40,12 @@ export default class PlaylistController extends Controller {
   }
 
   @(task(function * (trackItem, playlist) {
+    trackItem.state = TrackItemState.PROCESSING;
+
     // Find the track.
     const track = yield this.musify.findSpotifySong(trackItem.track);
     if (!track) {
-      // TODO: Set state.
+      trackItem.state = TrackItemState.NOT_FOUND;
       return;
     }
 
@@ -51,10 +55,12 @@ export default class PlaylistController extends Controller {
     try {
       const result = yield this.musify.addSongToPlaylist(track, playlist);
       if (!result) {
-        // TODO: Set state.
+        trackItem.state = TrackItemState.FAILED;
+        return;
       }
+      trackItem.state = TrackItemState.DONE;
     } catch {
-      // TODO: Set state.
+      trackItem.state = TrackItemState.FAILED;
     }
   })).enqueue() processTrack;
 }

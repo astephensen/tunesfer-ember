@@ -1,17 +1,19 @@
 <div local-class="track-row">
-  {{#if @processing}}
-    <div local-class="track-processing">
-      {{#if @succeeded}}
-        Y
-      {{else if @failed}}
-        N
-      {{else}}
-        <LoadingIndicator />
-      {{/if}}
-    </div>
-  {{else}}
+  {{#if this.idle}}
     <div local-class="track-index">
       {{@index}}.
+    </div>
+  {{else}}
+    <div local-class="track-index track-processing">
+      {{#if this.processing }}
+        <LoadingIndicator />
+      {{else if this.done}}
+        <img src="images/check.svg" alt="Succeeded" height="30" width="30" />
+      {{else if this.notFound}}
+        <img src="images/warning.svg" alt="Warning" height="30" width="30" />
+      {{else if this.failed}}
+        <img src="images/cross.svg" alt="Error" height="30" width="30" />
+      {{/if}}
     </div>
   {{/if}}
   <div local-class="track-name-container">
