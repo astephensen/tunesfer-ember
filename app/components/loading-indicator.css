@@ -118,3 +118,7 @@
             transform: scale(1);
   }
 }
+
+.color-white .sk-child:before {
+  background-color: white;
+}

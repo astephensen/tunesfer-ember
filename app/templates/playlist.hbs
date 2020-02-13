@@ -6,16 +6,20 @@
   @description={{this.model.playlist.description}}
   @author={{this.model.playlist.owner.display_name}}
 >
-  {{#if this.processing}}
-    <MusicButton @title="Cancel" @hideImage={{true}} @action={{this.cancel}}/>
-  {{else}}
+  {{#unless this.processing}}
     <MusicButton @title="Add to Apple Music" @action={{this.addPlaylist}}/>
-  {{/if}}
+  {{/unless}}
 </PlaylistInfo>
 
 {{#if this.processing}}
   <div local-class="info-container">
-    <InfoBar @text="This playlist is being added to your Apple Music library. You will need to keep this page open until it is done." />
+    <InfoBar>
+      <div local-class="info-indicator">
+        <div local-class="loading"><LoadingIndicator @white={{true}}/></div>
+        <div local-class="info-text">This playlist is being added to your Apple Music library. You will need to keep this window open until it is done.</div>
+      </div>
+      <button local-class="cancel-button" type="button" {{on 'click' this.cancel}}>Cancel</button>
+    </InfoBar>
   </div>
 {{/if}}
 
