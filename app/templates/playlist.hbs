@@ -6,12 +6,12 @@
   @description={{this.model.playlist.description}}
   @author={{this.model.playlist.owner.display_name}}
 >
-  {{#unless this.processing}}
-    <MusicButton @title="Add to Apple Music" @action={{this.addPlaylist}}/>
-  {{/unless}}
+  {{#if this.addPlaylist.isIdle}}
+    <MusicButton @title="Add to Apple Music" @action={{perform this.addPlaylist}}/>
+  {{/if}}
 </PlaylistInfo>
 
-{{#if this.processing}}
+{{#if this.addPlaylist.isRunning}}
   <div local-class="info-container">
     <InfoBar>
       <div local-class="info-indicator">
