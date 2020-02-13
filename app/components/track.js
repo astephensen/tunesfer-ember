@@ -21,4 +21,8 @@ export default class TrackComponent extends Component {
   get failed() {
     return this.args.state === TrackItemState.FAILED;
   }
+
+  get cancelled() {
+    return this.args.state === TrackItemState.CANCELLED;
+  }
 }

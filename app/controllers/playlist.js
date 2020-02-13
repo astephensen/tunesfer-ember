@@ -29,14 +29,20 @@ export default class PlaylistController extends Controller {
 
     // Create tasks for each of the tracks.
     for (const trackItem of this.model.playlist.tracks.items) {
-      trackItem.task = this.processTrack.perform(trackItem, playlist);
       trackItem.state = TrackItemState.IDLE;
+      trackItem.task = this.processTrack.perform(trackItem, playlist);
     }
   }
 
   @action
   cancel() {
     this.processTrack.cancelAll();
+    for (const trackItem of this.model.playlist.tracks.items) {
+      if (trackItem.state === TrackItemState.IDLE || trackItem.state === TrackItemState.PROCESSING) {
+        trackItem.state = TrackItemState.CANCELLED;
+      }
+    }
+    this.processing = false;
   }
 
   @(task(function * (trackItem, playlist) {

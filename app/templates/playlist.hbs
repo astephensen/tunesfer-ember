@@ -6,14 +6,11 @@
   @description={{this.model.playlist.description}}
   @author={{this.model.playlist.owner.display_name}}
 >
-  {{#unless this.processing}}
+  {{#if this.processing}}
+    <MusicButton @title="Cancel" @hideImage={{true}} @action={{this.cancel}}/>
+  {{else}}
     <MusicButton @title="Add to Apple Music" @action={{this.addPlaylist}}/>
-  {{/unless}}
-  {{!--
-  {{#if this.processTrack.isRunning}}
-    <button type="button" {{on "click" this.cancel}}>Cancel</button>
   {{/if}}
-  --}}
 </PlaylistInfo>
 
 {{#if this.processing}}

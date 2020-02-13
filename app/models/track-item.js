@@ -6,7 +6,8 @@ export const TrackItemState = {
   PROCESSING: 'processing',
   NOT_FOUND: 'not_found',
   FAILED: 'failed',
-  DONE: 'done'
+  DONE: 'done',
+  CANCELLED: 'cancelled'
 }
 
 export default class TrackItemModel extends Object {
