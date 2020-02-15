@@ -1,12 +1,13 @@
 .back-button {
+  text-align: left;
   border: none;
   width: 10em;
   height: 3em;
-  background: url('/images/back-icon.svg') no-repeat center left;
   margin: 1em 0;
   opacity: 0.5;
   transition: all 0.3s;
   cursor: pointer;
+  background-color: transparent;
 
   &:hover {
     opacity: 1;

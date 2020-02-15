@@ -11,10 +11,10 @@
   display: flex;
   align-items: center;
   margin-bottom: 1em;
+}
 
-  & img {
-    margin-right: 0.5em;
-  }
+.logo {
+  margin-right: 0.5em;
 }
 
 .or {

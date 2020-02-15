@@ -8,13 +8,13 @@
       {{#if this.processing }}
         <LoadingIndicator />
       {{else if this.done}}
-        <img src="images/check.svg" alt="Succeeded" height="30" width="30" />
+        {{svg-jar "check" height="30px" width="30px"}}
       {{else if this.notFound}}
-        <img src="images/warning.svg" alt="Warning" height="30" width="30" />
+        {{svg-jar "warning" height="30px" width="30px"}}
       {{else if this.failed}}
-        <img src="images/cross.svg" alt="Error" height="30" width="30" />
+        {{svg-jar "cross" height="30px" width="30px"}}
       {{else if this.cancelled}}
-        <img src="images/cross.svg" alt="Cancelled" height="30" width="30" />
+        {{svg-jar "cross" height="30px" width="30px"}}
       {{/if}}
     </div>
   {{/if}}
