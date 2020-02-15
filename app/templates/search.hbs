@@ -6,11 +6,7 @@
     @input={{this.validatePlaylist}}
     @placeholder="Enter a Spotify playlist link"
   />
-  {{#if this.hasEnteredPlaylist}}
-    {{#unless this.playlistIsValid}}
-      <InfoBar local-class="invalid-link" @text="Are you sure that's a Spotify playlist link?" />
-    {{/unless}}
-  {{/if}}
+  <InfoBar local-class="invalid-link {{if this.hideInvalidLink 'hidden'}}" @text="Are you sure that's a Spotify playlist link?" />
   <div local-class="or">- or -</div>
   <MusicButton @large="true" @hideImage="true" @title="Try some Australian Indie?" @action={{this.randomPlaylist}} />
   {{!

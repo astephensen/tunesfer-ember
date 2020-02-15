@@ -17,6 +17,10 @@ export default class SearchController extends Controller {
     return PLAYLIST_REGEX.test(this.playlistUrl);
   }
 
+  get hideInvalidLink() {
+    return !this.hasEnteredPlaylist || this.playlistIsValid;
+  }
+
   @action
   loadPlaylist(playlistUrl) {
     const result = playlistUrl.match(PLAYLIST_REGEX);
