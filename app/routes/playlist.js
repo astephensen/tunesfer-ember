@@ -8,4 +8,13 @@ export default class PlaylistRoute extends Route {
     const playlist = await this.musify.getPlaylist(playlistId);
     return { playlist };
   }
+
+  setupController(controller) {
+    super.setupController(...arguments);
+
+    // Reset all tasks.
+    controller.authorize.cancelAll({ resetState: true });
+    controller.addPlaylist.cancelAll({ resetState: true });
+    controller.processTrack.cancelAll({ resetState: true });
+  }
 }
