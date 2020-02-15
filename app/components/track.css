@@ -10,6 +10,7 @@
   padding: 1em;
   transition: all 0.3s;
   border-radius: 10px;
+  position: relative;
 
   &:hover {
     background-color: white;
