@@ -45,10 +45,6 @@
 }
 
 .music-image {
-  width: 18px;
-  height: 18px;
-  background: url('/images/music-icon.svg') no-repeat center;
-  background-size: 18px 18px;
   margin-right: 0.7em;
 }
 

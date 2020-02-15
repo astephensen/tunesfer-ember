@@ -1,4 +1,4 @@
 <button type="button" local-class="music-button {{if @large 'large'}}" {{on "click" @action}}>
-  {{#unless @hideImage}}<div local-class="music-image"></div>{{/unless}}
+  {{#unless @hideImage}}{{svg-jar "music" local-class="music-image" width="18px" height="18px"}}{{/unless}}
   {{@title}}{{yield}}
 </button>
