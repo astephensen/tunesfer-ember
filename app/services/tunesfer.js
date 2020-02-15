@@ -123,7 +123,9 @@ export default class TunesferService extends Service {
       })
     });
     const resultJSON = await result.json();
-    return resultJSON.data[0];
+    const playlist = resultJSON.data[0];
+    playlist.tracks = []; // TODO: Create model?
+    return playlist;
   }
 
   /**
