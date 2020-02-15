@@ -14,6 +14,10 @@ export default class TrackComponent extends Component {
     return this.args.state === TrackItemState.NOT_FOUND;
   }
 
+  get skipped() {
+    return this.args.state === TrackItemState.SKIPPED;
+  }
+
   get done() {
     return this.args.state === TrackItemState.DONE;
   }

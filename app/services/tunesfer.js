@@ -4,6 +4,7 @@ import Playlist from '../models/playlist';
 import TrackItem from '../models/track-item';
 
 const TUNESFER_URL = 'https://c9s50yde72.execute-api.us-east-1.amazonaws.com/dev/playlist';
+const APPLE_MUSIC_API = 'https://api.music.apple.com';
 
 export default class TunesferService extends Service {
   musicKit = MusicKit.getInstance();
@@ -13,6 +14,16 @@ export default class TunesferService extends Service {
    */
   get isAuthorized() {
     return this.musicKit.isAuthorized
+  }
+
+  /**
+   * Returns the headers required for a request.
+   */
+  get headers() {
+    return {
+      Authorization: `Bearer ${this.musicKit.api.developerToken}`,
+      'Music-User-Token': this.musicKit.api.userToken
+    }
   }
 
   /**
@@ -62,6 +73,35 @@ export default class TunesferService extends Service {
   }
 
   /**
+   * Fetches a playlist and all of its songs from the user's library.
+   *
+   * @param {string} playlistId The id of the playlist to fetch.
+   * @returns {Object|null} The Apple Music playlist or null if it couldn't be found.
+   */
+  async getPlaylist(playlistId) {
+    const playlist = await this.musicKit.api.library.playlist(playlistId);
+    if (!playlist) {
+      return null;
+    }
+
+    // Fetch all of the tracks and add it as a new property in the playlist.
+    let tracks = playlist.relationships.tracks.data;
+    let next = playlist.relationships.tracks.next;
+    while (next) {
+      const result = await fetch(`${APPLE_MUSIC_API}/${next}`, {
+        method: 'GET',
+        headers: this.headers
+      });
+      const resultJSON = await result.json();
+      tracks = tracks.concat(resultJSON.data);
+      next = resultJSON.next;
+    }
+    playlist.tracks = tracks;
+
+    return playlist;
+  }
+
+  /**
    * Creates a playlist.
    *
    * Note: We have to send a request instead of using MusicKit as there's no way of creating a playlist using the
@@ -72,12 +112,9 @@ export default class TunesferService extends Service {
    * @returns {Object} An Apple Music playlist object.
    */
   async createPlaylist(name, description) {
-    const result = await fetch('https://api.music.apple.com/v1/me/library/playlists', {
+    const result = await fetch(`${APPLE_MUSIC_API}/v1/me/library/playlists`, {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${this.musicKit.api.developerToken}`,
-        'Music-User-Token': this.musicKit.api.userToken
-      },
+      headers: this.headers,
       body: JSON.stringify({
         attributes: {
           name,

@@ -5,6 +5,7 @@ export const TrackItemState = {
   IDLE: 'idle',
   PROCESSING: 'processing',
   NOT_FOUND: 'not_found',
+  SKIPPED: 'skipped',
   FAILED: 'failed',
   DONE: 'done',
   CANCELLED: 'cancelled'

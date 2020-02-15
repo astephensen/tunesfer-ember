@@ -27,6 +27,9 @@ export default class PlaylistController extends Controller {
     let playlist = yield this.tunesfer.findPlaylist(this.model.playlist.name);
     if (!playlist) {
       playlist = yield this.tunesfer.createPlaylist(this.model.playlist.name);
+    } else {
+      // Fetch the full playlist.
+      playlist = yield this.tunesfer.getPlaylist(playlist.id);
     }
 
     // Create tasks for each of the tracks.
@@ -53,7 +56,14 @@ export default class PlaylistController extends Controller {
       return;
     }
 
-    // TODO: See if the track already exists in the playlist.
+    // See if the track already exists in the playlist.
+    const existingTrack = playlist.tracks.find((playlistTrack) => {
+      return track.attributes.name === playlistTrack.attributes.name;
+    });
+    if (existingTrack) {
+      trackItem.state = TrackItemState.SKIPPED;
+      return;
+    }
 
     // Add the track to the playlist.
     try {

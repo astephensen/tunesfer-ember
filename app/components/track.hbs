@@ -13,6 +13,9 @@
       {{else if this.notFound}}
         {{svg-jar "warning" height="30px" width="30px"}}
         <EmberTooltip @text="This tune couldn't be found" @side="right" />
+      {{else if this.skipped}}
+        {{svg-jar "skip" height="30px" width="30px"}}
+        <EmberTooltip @text="This tune already exists in the playlist" @side="right" />
       {{else if this.failed}}
         {{svg-jar "cross" height="30px" width="30px"}}
         <EmberTooltip @text="There was an error when adding this tune" @side="right" />
