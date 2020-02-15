@@ -9,13 +9,13 @@
         <LoadingIndicator />
       {{else if this.done}}
         {{svg-jar "check" height="30px" width="30px"}}
-        <EmberTooltip @text="The track was found and added to the playlist" @side="right" />
+        <EmberTooltip @text="The tune was found and added to the playlist" @side="right" />
       {{else if this.notFound}}
         {{svg-jar "warning" height="30px" width="30px"}}
-        <EmberTooltip @text="This track couldn't be found" @side="right" />
+        <EmberTooltip @text="This tune couldn't be found" @side="right" />
       {{else if this.failed}}
         {{svg-jar "cross" height="30px" width="30px"}}
-        <EmberTooltip @text="There was an error when adding this track" @side="right" />
+        <EmberTooltip @text="There was an error when adding this tune" @side="right" />
       {{else if this.cancelled}}
         {{svg-jar "cancel" height="30px" width="30px"}}
         <EmberTooltip @text="The playlist transfer was canceled" @side="right" />
