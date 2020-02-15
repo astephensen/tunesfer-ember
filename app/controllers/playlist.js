@@ -8,12 +8,19 @@ export default class PlaylistController extends Controller {
   @service musify;
 
   /**
+   * Task to authorize the user with Apple Music.
+   */
+  @(task(function *() {
+    yield this.musify.authorize();
+    this.notifyPropertyChange('isAuthorized');
+  })) authorize;
+
+  /**
    * Task to add the playlist to the user's library.
    */
   @(task(function *() {
-    const result = yield this.musify.authorize();
-    if (!result) {
-      return;
+    if (!this.musify.isAuthorized) {
+      throw new Error('The user is unauthorized!');
     }
 
     // Check if the playlist exists in the library.

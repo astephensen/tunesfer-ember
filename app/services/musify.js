@@ -9,6 +9,13 @@ export default class MusifyService extends Service {
   musicKit = MusicKit.getInstance();
 
   /**
+   * Indicates if the current user is authorized.
+   */
+  get isAuthorized() {
+    return this.musicKit.isAuthorized
+  }
+
+  /**
    * Authorizes the user with Apple Music.
    *
    * @returns {bool} A success flag.
@@ -19,6 +26,8 @@ export default class MusifyService extends Service {
       return true;
     } catch {
       return false;
+    } finally {
+      this.notifyPropertyChange('isAuthorized');
     }
   }
 
