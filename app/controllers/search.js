@@ -9,6 +9,9 @@ export default class SearchController extends Controller {
   @tracked
   playlistUrl = '';
 
+  @tracked
+  error = null;
+
   get hasEnteredPlaylist() {
     return !isBlank(this.playlistUrl);
   }
@@ -34,6 +37,8 @@ export default class SearchController extends Controller {
   @action
   validatePlaylist(event) {
     this.playlistUrl = event.target.value;
+    // Clear any existing errors.
+    this.error = null;
   }
 
   @action

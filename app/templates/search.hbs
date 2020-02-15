@@ -2,11 +2,13 @@
   <div local-class="logo-container">{{svg-jar "logo" local-class="logo" height="50px" width="50px"}}<h1>Tunesfer</h1><div local-class="beta-tag">ALPHA</div></div>
   <h2>Transfer Spotify playlists to Apple Music!</h2>
   <PlaylistSearch
+    @value={{this.playlistUrl}}
     @enter={{this.loadPlaylist}}
     @input={{this.validatePlaylist}}
     @placeholder="Enter a Spotify playlist link"
   />
-  <InfoBar local-class="invalid-link {{if this.hideInvalidLink 'hidden'}}" @text="Are you sure that's a Spotify playlist link?" />
+  <InfoBar local-class="error-bar {{if this.hideInvalidLink 'hidden'}}" @text="Are you sure that's a Spotify playlist link?" />
+  <InfoBar local-class="error-bar {{unless this.error 'hidden'}}" @text="The playlist could not be loaded. Please check it is public and try again." />
   <div local-class="or">- or -</div>
   <MusicButton @large="true" @hideImage="true" @title="Try some Australian Indie?" @action={{this.randomPlaylist}} />
   {{!

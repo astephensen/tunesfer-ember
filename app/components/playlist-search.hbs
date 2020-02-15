@@ -1,4 +1,4 @@
 <div local-class="playlist-search-container">
   {{!-- Note: Need to use the fn helper because the Input component behaves strangely --}}
-  <Input local-class="playlist-search-box" placeholder={{@placeholder}} @enter={{fn @enter}} @input={{fn @input}}/>
+  <Input local-class="playlist-search-box" value={{@value}} placeholder={{@placeholder}} @enter={{fn @enter}} @input={{fn @input}}/>
 </div>

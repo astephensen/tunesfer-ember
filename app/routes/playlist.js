@@ -5,8 +5,14 @@ export default class PlaylistRoute extends Route {
   @service musify;
 
   async model({ playlist_id: playlistId }) {
-    const playlist = await this.musify.getPlaylist(playlistId);
-    return { playlist };
+    try {
+      const playlist = await this.musify.getPlaylist(playlistId);
+      return { playlist };
+    } catch {
+      this.transitionTo('search').then((searchRoute) => {
+        searchRoute.controller.set('error', 'Unable to load playlist');
+      });
+    }
   }
 
   setupController(controller) {
