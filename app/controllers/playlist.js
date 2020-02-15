@@ -5,13 +5,13 @@ import { task, all } from 'ember-concurrency';
 import { TrackItemState } from '../models/track-item';
 
 export default class PlaylistController extends Controller {
-  @service musify;
+  @service tunesfer;
 
   /**
    * Task to authorize the user with Apple Music.
    */
   @(task(function *() {
-    yield this.musify.authorize();
+    yield this.tunesfer.authorize();
     this.notifyPropertyChange('isAuthorized');
   })) authorize;
 
@@ -19,14 +19,14 @@ export default class PlaylistController extends Controller {
    * Task to add the playlist to the user's library.
    */
   @(task(function *() {
-    if (!this.musify.isAuthorized) {
+    if (!this.tunesfer.isAuthorized) {
       throw new Error('The user is unauthorized!');
     }
 
     // Check if the playlist exists in the library.
-    let playlist = yield this.musify.findPlaylist(this.model.playlist.name);
+    let playlist = yield this.tunesfer.findPlaylist(this.model.playlist.name);
     if (!playlist) {
-      playlist = yield this.musify.createPlaylist(this.model.playlist.name);
+      playlist = yield this.tunesfer.createPlaylist(this.model.playlist.name);
     }
 
     // Create tasks for each of the tracks.
@@ -47,7 +47,7 @@ export default class PlaylistController extends Controller {
     trackItem.state = TrackItemState.PROCESSING;
 
     // Find the track.
-    const track = yield this.musify.findSpotifySong(trackItem.track);
+    const track = yield this.tunesfer.findSpotifySong(trackItem.track);
     if (!track) {
       trackItem.state = TrackItemState.NOT_FOUND;
       return;
@@ -57,7 +57,7 @@ export default class PlaylistController extends Controller {
 
     // Add the track to the playlist.
     try {
-      const result = yield this.musify.addSongToPlaylist(track, playlist);
+      const result = yield this.tunesfer.addSongToPlaylist(track, playlist);
       if (!result) {
         trackItem.state = TrackItemState.FAILED;
         return;

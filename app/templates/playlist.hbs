@@ -8,7 +8,7 @@
 >
   {{#if this.addPlaylist.isIdle}}
     {{#unless this.addPlaylist.lastSuccessful}}
-      {{#if this.musify.isAuthorized}}
+      {{#if this.tunesfer.isAuthorized}}
         <MusicButton @title="Add to Apple Music" @action={{perform this.addPlaylist}}/>
       {{else}}
         <MusicButton @title="Log in to Apple Music" @action={{perform this.authorize}}/>

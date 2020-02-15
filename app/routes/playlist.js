@@ -2,11 +2,11 @@ import Route from '@ember/routing/route';
 import { inject as service } from '@ember/service';
 
 export default class PlaylistRoute extends Route {
-  @service musify;
+  @service tunesfer;
 
   async model({ playlist_id: playlistId }) {
     try {
-      const playlist = await this.musify.getPlaylist(playlistId);
+      const playlist = await this.tunesfer.getPlaylist(playlistId);
       return { playlist };
     } catch {
       this.transitionTo('search').then((searchRoute) => {
