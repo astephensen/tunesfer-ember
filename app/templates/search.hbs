@@ -2,9 +2,15 @@
   <div local-class="logo-container">{{svg-jar "logo" local-class="logo" height="50px" width="50px"}}<h1>Tunesfer</h1><div local-class="beta-tag">ALPHA</div></div>
   <h2>Transfer Spotify playlists to Apple Music!</h2>
   <PlaylistSearch
-    @action={{this.loadPlaylist}}
+    @enter={{this.loadPlaylist}}
+    @input={{this.validatePlaylist}}
     @placeholder="Enter a Spotify playlist link"
   />
+  {{#if this.hasEnteredPlaylist}}
+    {{#unless this.playlistIsValid}}
+      <InfoBar local-class="invalid-link" @text="Are you sure that's a Spotify playlist link?" />
+    {{/unless}}
+  {{/if}}
   <div local-class="or">- or -</div>
   <MusicButton @large="true" @hideImage="true" @title="Try some Australian Indie?" @action={{this.randomPlaylist}} />
   {{!

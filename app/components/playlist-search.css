@@ -29,3 +29,8 @@
 
   -webkit-appearance: none;
 }
+
+.playlist-form {
+  flex: 1;
+  display: flex;
+}

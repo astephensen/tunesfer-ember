@@ -1,17 +1,35 @@
 import Controller from '@ember/controller';
 import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+import { isBlank } from '@ember/utils';
+
+const PLAYLIST_REGEX = /playlist\/([a-zA-Z0-9]+)/
 
 export default class SearchController extends Controller {
+  @tracked
+  playlistUrl = '';
+
+  get hasEnteredPlaylist() {
+    return !isBlank(this.playlistUrl);
+  }
+
+  get playlistIsValid() {
+    return PLAYLIST_REGEX.test(this.playlistUrl);
+  }
+
   @action
   loadPlaylist(playlistUrl) {
-    // Validate the URL.
-    const result = playlistUrl.match(/playlist\/(.*)\?/);
+    const result = playlistUrl.match(PLAYLIST_REGEX);
     if (!result || result.length !== 2) {
-      // TODO: Inform the user.
       return;
     }
     const [ , playlistId ] = result;
     this.transitionToRoute('playlist', playlistId);
+  }
+
+  @action
+  validatePlaylist(event) {
+    this.playlistUrl = event.target.value;
   }
 
   @action
