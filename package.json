@@ -1,8 +1,8 @@
 {
-  "name": "musify-web",
+  "name": "tunesfer",
   "version": "0.0.0",
   "private": true,
-  "description": "Small description for musify-web goes here",
+  "description": "Transfer Spotify playlists to Apple Music!",
   "repository": "",
   "license": "MIT",
   "author": "",

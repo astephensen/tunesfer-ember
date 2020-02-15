@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   let ENV = {
-    modulePrefix: 'musify-web',
+    modulePrefix: 'tunesfer',
     environment,
     rootURL: '/',
     locationType: 'auto',

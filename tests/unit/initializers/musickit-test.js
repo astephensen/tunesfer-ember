@@ -1,6 +1,6 @@
 import Application from '@ember/application';
 
-import { initialize } from 'musify-web/initializers/musickit';
+import { initialize } from 'tunesfer/initializers/musickit';
 import { module, test } from 'qunit';
 import { run } from '@ember/runloop';
 
