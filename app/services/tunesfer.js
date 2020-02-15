@@ -37,7 +37,7 @@ export default class TunesferService extends Service {
    * @param {string} playlistId The ID of the playlist.
    * @returns {Playlist} The fetched playlist.
    */
-  async getPlaylist(playlistId) {
+  async getSpotifyPlaylist(playlistId) {
     return fetch(`${TUNESFER_URL}/${playlistId}`).then((response) => {
       return response.json();
     }).then((json) => {
@@ -54,9 +54,9 @@ export default class TunesferService extends Service {
    * @returns {Object|null} The Apple Music playlist that was found or null if it wasn't.
    */
   async findPlaylist(name) {
-    const playlists = await this.musicKit.api.library.playlists();
-    const foundPlaylist = playlists.find((playlist) => {
-      return playlist.attributes.name === name;
+    const searchResults = await this.musicKit.api.library.search(name, { types: 'library-playlists' });
+    const foundPlaylist = searchResults['library-playlists'].data.find((playlist) => {
+      return playlist.attributes.name.toLowerCase() === name.toLowerCase();
     });
     return foundPlaylist || null;
   }

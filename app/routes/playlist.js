@@ -6,7 +6,7 @@ export default class PlaylistRoute extends Route {
 
   async model({ playlist_id: playlistId }) {
     try {
-      const playlist = await this.tunesfer.getPlaylist(playlistId);
+      const playlist = await this.tunesfer.getSpotifyPlaylist(playlistId);
       return { playlist };
     } catch {
       this.transitionTo('search').then((searchRoute) => {
