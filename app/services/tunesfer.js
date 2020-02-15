@@ -132,14 +132,38 @@ export default class TunesferService extends Service {
    * Searches for a song based on a Spotify track object.
    *
    * @param {Object} track The Spotify track to search for.
-   * @returns {Object} The Apple Music song object or null if one could not be found.
+   * @returns {Object|null} The Apple Music song object or null if one could not be found.
    */
   async findSpotifySong(track) {
-    const albumName = track.album.name;
-    const artistName = track.artists[0].name;
-    const trackName = track.name;
-    const queryString = `${trackName}, ${artistName}, ${albumName}`
-    return await this.findSong(queryString);
+    let albumName = track.album.name;
+    let artistName = track.artists[0].name;
+    let trackName = track.name;
+
+    // Attempt to find the song based on all of the information presented.
+    const fullSearchResult = await this.findSong(`${trackName}, ${artistName}, ${albumName}`);
+    if (fullSearchResult) {
+      return fullSearchResult;
+    }
+
+    // Attempt to find the song with just the track and artist.
+    const trackArtistSearchResult = await this.findSong(`${trackName}, ${artistName}`);
+    if (trackArtistSearchResult) {
+      return trackArtistSearchResult;
+    }
+
+    // Try stripping anything following a hyphen in the track name.
+    // This is usually "Remastered" or "Anniversary version".
+    let hyphenIndex = trackName.indexOf('-');
+    if (hyphenIndex !== -1) {
+      let minimalTrackName = trackName.substring(0, hyphenIndex - 1);
+      const minimalTrackArtistSearchResult = await this.findSong(`${minimalTrackName}, ${artistName}`);
+      if (minimalTrackArtistSearchResult) {
+        return minimalTrackArtistSearchResult;
+      }
+    }
+
+    // Couldn't find it :(.
+    return null;
   }
 
   /**
