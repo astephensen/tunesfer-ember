@@ -48,6 +48,8 @@
   {{/each}}
 </div>
 
-{{#if moreTracksAvailable}}
-  <InfoBar local-class="more-tracks-info" @text="Showing 100 of {{this.model.playlist.tracks.total}} tunes" />
+{{#if this.moreTracksAvailable}}
+  <div local-class="info-bar-container">
+    <InfoBar local-class="more-tracks-info" @text="Showing 100 of {{this.model.playlist.tracks.total}} tunes" />
+  </div>
 {{/if}}
