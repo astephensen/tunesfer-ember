@@ -3,7 +3,7 @@ import fetch from 'fetch';
 import Playlist from '../models/playlist';
 import TrackItem from '../models/track-item';
 
-const TUNESFER_URL = 'https://c9s50yde72.execute-api.us-east-1.amazonaws.com/dev/playlist';
+const TUNESFER_API = 'https://api.tunesfer.com';
 const APPLE_MUSIC_API = 'https://api.music.apple.com';
 
 export default class TunesferService extends Service {
@@ -50,7 +50,7 @@ export default class TunesferService extends Service {
    * @returns {Playlist} The fetched playlist.
    */
   async getSpotifyPlaylist(playlistId, fetchAllTracks = false) {
-    let requestUrl = `${TUNESFER_URL}/${playlistId}`;
+    let requestUrl = `${TUNESFER_API}/playlist/${playlistId}`;
     if (fetchAllTracks) {
       requestUrl += '?fetchAllTracks=true';
     }
