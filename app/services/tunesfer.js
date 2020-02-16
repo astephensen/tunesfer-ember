@@ -46,10 +46,15 @@ export default class TunesferService extends Service {
    * Fetches a playlist from Spotify and returns a Playlist object.
    *
    * @param {string} playlistId The ID of the playlist.
+   * @param {boolean} fetchAllTracks Indicates if all of the tracks should be fetched.
    * @returns {Playlist} The fetched playlist.
    */
-  async getSpotifyPlaylist(playlistId) {
-    return fetch(`${TUNESFER_URL}/${playlistId}`).then((response) => {
+  async getSpotifyPlaylist(playlistId, fetchAllTracks = false) {
+    let requestUrl = `${TUNESFER_URL}/${playlistId}`;
+    if (fetchAllTracks) {
+      requestUrl += '?fetchAllTracks=true';
+    }
+    return fetch(requestUrl).then((response) => {
       return response.json();
     }).then((json) => {
       const playlist = Playlist.create(json);

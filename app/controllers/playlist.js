@@ -7,6 +7,10 @@ import { TrackItemState } from '../models/track-item';
 export default class PlaylistController extends Controller {
   @service tunesfer;
 
+  get moreTracksAvailable() {
+    return this.model.playlist.tracks.items.length !== this.model.playlist.tracks.total;
+  }
+
   /**
    * Task to authorize the user with Apple Music.
    */
@@ -21,6 +25,12 @@ export default class PlaylistController extends Controller {
   @(task(function *() {
     if (!this.tunesfer.isAuthorized) {
       throw new Error('The user is unauthorized!');
+    }
+
+    // If required, fetch the full playlist from Spotify and swap out the model.
+    if (this.model.playlist.tracks.total > 100) {
+      const spotifyPlaylist = yield this.tunesfer.getSpotifyPlaylist(this.model.playlist.id, true);
+      this.model = { playlist: spotifyPlaylist };
     }
 
     // Check if the playlist exists in the library.

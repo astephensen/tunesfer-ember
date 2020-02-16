@@ -52,6 +52,13 @@
   padding: 1.5em 0;
 }
 
+.more-tracks-info {
+  margin-bottom: 1.5em;
+  background: #FFFFFF;
+  color: #000000;
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   /* Targets the InfoBar component, still gross. */
   .info-container > div {

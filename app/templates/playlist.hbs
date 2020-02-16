@@ -47,3 +47,7 @@
     />
   {{/each}}
 </div>
+
+{{#if moreTracksAvailable}}
+  <InfoBar local-class="more-tracks-info" @text="Showing 100 of {{this.model.playlist.tracks.total}} tunes" />
+{{/if}}
