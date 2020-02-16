@@ -7,8 +7,8 @@ import { TrackItemState } from '../models/track-item';
 export default class PlaylistController extends Controller {
   @service tunesfer;
 
-  get moreTracksAvailable() {
-    return this.model.playlist.tracks.items.length !== this.model.playlist.tracks.total;
+  get additionalTracksAvailable() {
+    return this.model.playlist.tracks.total - this.model.playlist.tracks.items.length;
   }
 
   /**
