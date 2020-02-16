@@ -43,6 +43,6 @@ export default class SearchController extends Controller {
 
   @action
   randomPlaylist() {
-    this.transitionToRoute('playlist', '4Qqc4lX4i4A8uXD9SBQy7S');
+    this.transitionToRoute('playlist', '2H4gnRP5H2sKrexuWhpS99');
   }
 }
