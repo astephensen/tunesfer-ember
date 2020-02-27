@@ -18,8 +18,7 @@ module.exports = function(environment) {
     },
 
     APP: {
-      // Here you can pass flags/options to your application instance
-      // when it is created
+      AM_DEVELOPER_TOKEN: process.env.AM_DEVELOPER_TOKEN
     }
   };
 

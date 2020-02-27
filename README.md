@@ -17,6 +17,7 @@ You will need the following things properly installed on your computer.
 * `git clone git@github.com:astephensen/tunesfer.git`
 * `cd tunesfer`
 * `npm install`
+* You need to set the `AM_DEVELOPER_TOKEN` environment variable to your Apple Music developer token. This can also be specified in the `.env` file in the root of the project.
 
 ## Running / Development
 
