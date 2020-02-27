@@ -12,7 +12,6 @@
   },
   "scripts": {
     "build": "ember build",
-    "deploy": "ember build --environment production && ember github-pages:commit --branch gh-pages --message \"Deploy gh-pages from commit $(git rev-parse HEAD)\" && git push origin gh-pages",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
     "start": "ember serve",
@@ -29,7 +28,6 @@
     "ember-cli-babel": "^7.13.0",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-eslint": "^5.1.0",
-    "ember-cli-github-pages": "^0.2.2",
     "ember-cli-htmlbars": "^4.2.0",
     "ember-cli-inject-live-reload": "^2.0.1",
     "ember-cli-sri": "^2.1.1",
