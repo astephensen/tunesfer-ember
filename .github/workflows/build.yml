@@ -1,4 +1,4 @@
-name: Deploy Tunesfer
+name: Build
 
 on:
   push:
