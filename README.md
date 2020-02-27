@@ -1,8 +1,6 @@
-<img align="left" width="60" height="60" src="public/logo.png?raw=true" alt="Tunesfer App Icon">
+<h1><img width="28" height="28" src="public/logo.png?raw=true" alt="Tunesfer App Icon">&nbsp;Tunesfer</h1>
 
-# Tunesfer
-
-![](https://img.shields.io/badge/Ember-3.16-orange) ![](https://github.com/astephensen/tunesfer/workflows/Build/badge.svg)
+![](https://img.shields.io/badge/Ember-3.15-orange) ![](https://github.com/astephensen/tunesfer/workflows/Build/badge.svg)
 
 Transfer Spotify playlists to Apple Music!
 
