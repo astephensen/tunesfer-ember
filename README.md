@@ -1,4 +1,4 @@
-<img align="left" width="60" height="60" src="public/logo.png?raw=true" alt="Tunesfer App Icon">
+<img align="left" width="40" height="40" src="public/logo.png?raw=true" alt="Tunesfer App Icon">
 
 # Tunesfer
 
