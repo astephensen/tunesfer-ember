@@ -39,7 +39,3 @@ You will need the following things properly installed on your computer.
 
 * `ember build` (development)
 * `ember build --environment production` (production)
-
-### Deploying
-
-* `npm run deploy`
