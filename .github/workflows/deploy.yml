@@ -18,4 +18,13 @@ jobs:
 
     - run: npm ci
 
-    - run: npm run build --environment production
+    - name: Build
+      run: npm run build --environment production
+
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist
+        cname: tunesfer.com
+        commit_message: Deploy gh-pages from commit
