@@ -1682,7 +1682,7 @@ catch(err) {
 
 ;
           if (!runningTests) {
-            require("tunesfer/app")["default"].create({"name":"tunesfer","version":"0.0.0+c20e3012"});
+            require("tunesfer/app")["default"].create({"name":"tunesfer","version":"0.0.0+204b8166"});
           }
         
 //# sourceMappingURL=tunesfer.map
