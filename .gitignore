@@ -1,4 +1,14 @@
-# See https://help.github.com/ignore-files/ for more about ignoring files.
+### General ###
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Thumbnails
+._*
+
+### Ember ###
 
 # compiled output
 /dist/
@@ -23,33 +33,6 @@
 /.node_modules.ember-try/
 /bower.json.ember-try
 /package.json.ember-try
-# General
-.DS_Store
-.AppleDouble
-.LSOverride
-
-# Icon must end with two \r
-Icon
-
-
-# Thumbnails
-._*
-
-# Files that might appear in the root of a volume
-.DocumentRevisions-V100
-.fseventsd
-.Spotlight-V100
-.TemporaryItems
-.Trashes
-.VolumeIcon.icns
-.com.apple.timemachine.donotpresent
-
-# Directories potentially created on remote AFP share
-.AppleDB
-.AppleDesktop
-Network Trash Folder
-Temporary Items
-.apdisk
 
 # dot env
 .env
