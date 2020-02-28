@@ -27,6 +27,8 @@ You will need the following things properly installed on your computer.
 
 ### Running Tests
 
+(For when there are some...)
+
 * `ember test`
 * `ember test --server`
 
