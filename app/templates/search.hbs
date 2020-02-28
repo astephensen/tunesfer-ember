@@ -11,9 +11,7 @@
   <InfoBar local-class="error-bar {{unless this.error 'hidden'}}" @text="That playlist could not be found. Please make sure it is public and try again." />
   <div local-class="or">- or -</div>
   <MusicButton @large="true" @hideImage="true" @title="Try some Australian Indie?" @action={{this.randomPlaylist}} />
-  {{!
   <div local-class="bottom-links">
-    <LinkTo @route="about">About</LinkTo> | <a href="https://github.com/astephensen/tunesfer-web">Github</a>
+    <a href="mailto:tunesfer@alan.io">Feedback</a> | <a href="https://github.com/astephensen/tunesfer" target="_blank" rel="noopener noreferrer">Github</a>
   </div>
-  }}
 </div>

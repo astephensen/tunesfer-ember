@@ -23,8 +23,12 @@
 
 .bottom-links {
   margin: 2em 0 1em 0;
-  color: #777;
+  color: #666;
   font-size: 0.8em;
+
+  & a {
+    color: #333;
+  }
 }
 
 .beta-tag {
