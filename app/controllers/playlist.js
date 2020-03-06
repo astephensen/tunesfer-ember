@@ -59,6 +59,15 @@ export default class PlaylistController extends Controller {
   @(task(function * (trackItem, playlist) {
     trackItem.state = TrackItemState.PROCESSING;
 
+    // Do a simple check to see if the track already exists in the playlist.
+    if (playlist.tracks.find((playlistTrack) => {
+      return trackItem.track.artists[0].name === playlistTrack.attributes.artistName
+        && trackItem.track.name === playlistTrack.attributes.name;
+    })) {
+      trackItem.state = TrackItemState.SKIPPED;
+      return;
+    }
+
     // Find the track.
     const track = yield this.tunesfer.findSpotifySong(trackItem.track);
     if (!track) {
@@ -67,10 +76,9 @@ export default class PlaylistController extends Controller {
     }
 
     // See if the track already exists in the playlist.
-    const existingTrack = playlist.tracks.find((playlistTrack) => {
+    if (playlist.tracks.find((playlistTrack) => {
       return track.attributes.name === playlistTrack.attributes.name;
-    });
-    if (existingTrack) {
+    })) {
       trackItem.state = TrackItemState.SKIPPED;
       return;
     }
