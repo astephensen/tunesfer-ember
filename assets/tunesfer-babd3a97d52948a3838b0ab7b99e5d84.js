@@ -56,18 +56,20 @@ case 16:return e.next=18,this.tunesfer.getPlaylist(o.id)
 case 18:o=e.sent
 case 19:return a=this.model.playlist.tracks.items.map((function(e){return e.state=n.TrackItemState.IDLE,e.task=i.processTrack.perform(e,o),e.task})),e.next=22,(0,t.all)(a)
 case 22:case"end":return e.stop()}}),e,this)}))).restartable(),a=(0,t.task)(regeneratorRuntime.mark((function e(t,r){var o
-return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return t.state=n.TrackItemState.PROCESSING,e.next=3,this.tunesfer.findSpotifySong(t.track)
-case 3:if(o=e.sent){e.next=7
-break}return t.state=n.TrackItemState.NOT_FOUND,e.abrupt("return")
-case 7:if(!r.tracks.find((function(e){return o.attributes.name===e.attributes.name}))){e.next=11
+return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:if(t.state=n.TrackItemState.PROCESSING,!r.tracks.find((function(e){return t.track.artists[0].name===e.attributes.artistName&&t.track.name===e.attributes.name}))){e.next=4
 break}return t.state=n.TrackItemState.SKIPPED,e.abrupt("return")
-case 11:return e.prev=11,e.next=14,this.tunesfer.addSongToPlaylist(o,r)
-case 14:if(e.sent){e.next=18
+case 4:return e.next=6,this.tunesfer.findSpotifySong(t.track)
+case 6:if(o=e.sent){e.next=10
+break}return t.state=n.TrackItemState.NOT_FOUND,e.abrupt("return")
+case 10:if(!r.tracks.find((function(e){return o.attributes.name===e.attributes.name}))){e.next=13
+break}return t.state=n.TrackItemState.SKIPPED,e.abrupt("return")
+case 13:return e.prev=13,e.next=16,this.tunesfer.addSongToPlaylist(o,r)
+case 16:if(e.sent){e.next=20
 break}return t.state=n.TrackItemState.FAILED,e.abrupt("return")
-case 18:t.state=n.TrackItemState.DONE,e.next=24
+case 20:t.state=n.TrackItemState.DONE,e.next=26
 break
-case 21:e.prev=21,e.t0=e.catch(11),t.state=n.TrackItemState.FAILED
-case 24:case"end":return e.stop()}}),e,this,[[11,21]])}))).enqueue(),s=_((i=function(e){function t(){var e,n
+case 23:e.prev=23,e.t0=e.catch(13),t.state=n.TrackItemState.FAILED
+case 26:case"end":return e.stop()}}),e,this,[[13,23]])}))).enqueue(),s=_((i=function(e){function t(){var e,n
 d(this,t)
 for(var r=arguments.length,o=new Array(r),a=0;a<r;a++)o[a]=arguments[a]
 return p(h(n=y(this,(e=b(t)).call.apply(e,[this].concat(o)))),"tunesfer",s,h(n)),p(h(n),"authorize",l,h(n)),p(h(n),"addPlaylist",c,h(n)),p(h(n),"processTrack",u,h(n)),n}var r,o,a
@@ -244,4 +246,4 @@ var t=Ember.HTMLBars.template({id:"Pdb08Wto",block:'{"symbols":["trackItem","tra
 e.default=t})),define("tunesfer/templates/search",["exports"],(function(e){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=Ember.HTMLBars.template({id:"U00ZlGC6",block:'{"symbols":[],"statements":[[7,"div",true],[11,"class",[29,[[28,"local-class",["search-container"],[["from"],["tunesfer/styles/search"]]]]]],[8],[0,"\\n  "],[7,"div",true],[11,"class",[29,[[28,"local-class",["logo-container"],[["from"],["tunesfer/styles/search"]]]]]],[8],[1,[28,"svg-jar",["logo"],[["height","width","class"],["50px","50px",[28,"concat",[[28,"local-class",["logo"],[["from"],["tunesfer/styles/search"]]]],null]]]],false],[7,"h1",true],[8],[0,"Tunesfer"],[9],[7,"div",true],[11,"class",[29,[[28,"local-class",["beta-tag"],[["from"],["tunesfer/styles/search"]]]]]],[8],[0,"BETA"],[9],[9],[0,"\\n  "],[7,"h2",true],[8],[0,"Transfer Spotify playlists to Apple Music!"],[9],[0,"\\n  "],[5,"playlist-search",[],[["@value","@enter","@input","@placeholder"],[[23,0,["playlistUrl"]],[23,0,["loadPlaylist"]],[23,0,["validatePlaylist"]],"Enter a Spotify playlist link"]]],[0,"\\n  "],[5,"info-bar",[[12,"class",[29,[[28,"local-class",[[28,"concat",["error-bar ",[28,"if",[[23,0,["hideInvalidLink"]],"hidden"],null]],null]],[["from"],["tunesfer/styles/search"]]]]]]],[["@text"],["Are you sure that\'s a Spotify playlist link?"]]],[0,"\\n  "],[5,"info-bar",[[12,"class",[29,[[28,"local-class",[[28,"concat",["error-bar ",[28,"unless",[[23,0,["error"]],"hidden"],null]],null]],[["from"],["tunesfer/styles/search"]]]]]]],[["@text"],["That playlist could not be found. Please make sure it is public and try again."]]],[0,"\\n  "],[7,"div",true],[11,"class",[29,[[28,"local-class",["or"],[["from"],["tunesfer/styles/search"]]]]]],[8],[0,"- or -"],[9],[0,"\\n  "],[5,"music-button",[],[["@large","@hideImage","@title","@action"],["true","true","Try some Australian Indie?",[23,0,["randomPlaylist"]]]]],[0,"\\n  "],[7,"div",true],[11,"class",[29,[[28,"local-class",["bottom-links"],[["from"],["tunesfer/styles/search"]]]]]],[8],[0,"\\n    "],[7,"a",true],[10,"href","mailto:tunesfer@alan.io"],[8],[0,"Feedback"],[9],[0," | "],[7,"a",true],[10,"href","https://github.com/astephensen/tunesfer"],[10,"target","_blank"],[10,"rel","noopener noreferrer"],[8],[0,"Github"],[9],[0,"\\n  "],[9],[0,"\\n"],[9],[0,"\\n"]],"hasEval":false}',meta:{moduleName:"tunesfer/templates/search.hbs"}})
 e.default=t})),define("tunesfer/config/environment",[],(function(){try{var e="tunesfer/config/environment",t=document.querySelector('meta[name="'+e+'"]').getAttribute("content"),n={default:JSON.parse(decodeURIComponent(t))}
-return Object.defineProperty(n,"__esModule",{value:!0}),n}catch(r){throw new Error('Could not read config from meta tag with name "'+e+'".')}})),runningTests||require("tunesfer/app").default.create({AM_DEVELOPER_TOKEN:"eyJhbGciOiJFUzI1NiIsImtpZCI6IkIyNE5TNzdYQjcifQ.eyJpc3MiOiJVRjVUSzM2VVg1IiwiaWF0IjoxNTgxMTM5NTg2LCJleHAiOjE1OTY2OTE1ODZ9.WW3QjG-xEPo5ceBtkUDAV38JqIA6LFJ7u01PUy85qDQLw5DgLZ2iYm-PnIpOemJLxtS65XeEpGdFNXA81vNWsA",name:"tunesfer",version:"0.0.0+fdf60771"})
+return Object.defineProperty(n,"__esModule",{value:!0}),n}catch(r){throw new Error('Could not read config from meta tag with name "'+e+'".')}})),runningTests||require("tunesfer/app").default.create({AM_DEVELOPER_TOKEN:"eyJhbGciOiJFUzI1NiIsImtpZCI6IkIyNE5TNzdYQjcifQ.eyJpc3MiOiJVRjVUSzM2VVg1IiwiaWF0IjoxNTgxMTM5NTg2LCJleHAiOjE1OTY2OTE1ODZ9.WW3QjG-xEPo5ceBtkUDAV38JqIA6LFJ7u01PUy85qDQLw5DgLZ2iYm-PnIpOemJLxtS65XeEpGdFNXA81vNWsA",name:"tunesfer",version:"0.0.0+0b4ce579"})
