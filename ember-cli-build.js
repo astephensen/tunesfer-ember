@@ -17,8 +17,9 @@ module.exports = function(defaults) {
     cssModules: {
       plugins: [
         postcssPresetEnv({
-          stage: 3,
+          stage: false,
           features: {
+            'custom-media-queries': true,
             'nesting-rules': true
           }
         })

@@ -3,6 +3,11 @@
   --fontSizeLarge: 1.25em;
   --fontSizeSmall: 0.8em;
 }
+@media (--compact) {
+  :root {
+    --fontSizeLarge: 1.1em;
+  }
+}
 
 .track-row {
   display: flex;
@@ -18,6 +23,11 @@
     transform: scale(1.01);
   }
 }
+@media (--compact) {
+  .track-row {
+    padding: 0.7em 0.25em;
+  }
+}
 
 .track-processing {
   display: flex;
@@ -30,6 +40,11 @@
   padding-right: 0.75em;
   text-align: right;
   width: 2.5em;
+}
+@media (--compact) {
+  .track-index {
+    padding-right: 0.5em;
+  }
 }
 
 .track-name-container {
@@ -53,18 +68,4 @@
   font-size: var(--fontSizeLarge);
   opacity: var(--opacityFaded);
   padding-left: 0.5em;
-}
-
-@media (max-width: 600px) {
-  :root {
-    --fontSizeLarge: 1.1em;
-  }
-
-  .track-row {
-    padding: 0.7em 0.25em;
-  }
-
-  .track-index {
-    padding-right: 0.5em;
-  }
 }

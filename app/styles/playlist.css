@@ -9,6 +9,12 @@
     align-items: center;
   }
 }
+@media (--compact) {
+  /* Targets the InfoBar component, still gross. */
+  .info-container > div {
+    flex-direction: column;
+  }
+}
 
 .info-indicator {
   display: flex;
@@ -22,6 +28,12 @@
 
 .info-text {
   padding: 0 1em;
+}
+@media (--compact) {
+  .info-text {
+    font-size: 0.9em;
+    padding-right: 0;
+  }
 }
 
 /* TODO: Not this. Gross. */
@@ -47,9 +59,20 @@
     background-color: black;
   }
 }
+@media (--compact) {
+  .cancel-button {
+    margin-top: 1em;
+    width: 100%;
+  }
+}
 
 .track-list {
   padding: 1.5em 0;
+}
+@media (--compact) {
+  .track-list {
+    padding: 1em 0;
+  }
 }
 
 .info-bar-container {
@@ -60,25 +83,4 @@
   background: #FFFFFF;
   color: #000000;
   text-align: center;
-}
-
-@media (max-width: 600px) {
-  /* Targets the InfoBar component, still gross. */
-  .info-container > div {
-    flex-direction: column;
-  }
-
-  .cancel-button {
-    margin-top: 1em;
-    width: 100%;
-  }
-
-  .track-list {
-    padding: 1em 0;
-  }
-
-  .info-text {
-    font-size: 0.9em;
-    padding-right: 0;
-  }
 }
