@@ -13,7 +13,7 @@ export default class TunesferService extends Service {
    * Indicates if the current user is authorized.
    */
   get isAuthorized() {
-    return this.musicKit.isAuthorized
+    return this.musicKit.isAuthorized;
   }
 
   /**
@@ -71,6 +71,9 @@ export default class TunesferService extends Service {
    */
   async findPlaylist(name) {
     const searchResults = await this.musicKit.api.library.search(name, { types: 'library-playlists' });
+    if (!searchResults['library-playlists'] || !searchResults['library-playlists'].data) {
+      return null;
+    }
     const foundPlaylist = searchResults['library-playlists'].data.find((playlist) => {
       return playlist.attributes.name.toLowerCase() === name.toLowerCase();
     });
